@@ -18,7 +18,7 @@ Connectly — Flutter, Firebase və Clean Architecture ilə hazırlanan bir Soci
 | Backend | Firebase (Authentication, Firestore, Storage) |
 | Dependency Injection | GetIt |
 | Naviqasiya | GoRouter *(planlaşdırılıb)* |
-| Local Storage | SharedPreferences, Hive *(inkişaf mərhələsində)* |
+| Local Storage | SharedPreferences, Hive  |
 | REST API | Dio *(planlaşdırılıb)* |
 | Arxitektura | Clean Architecture |
 
