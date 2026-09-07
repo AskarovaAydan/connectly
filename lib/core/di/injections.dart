@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectly/features/post/data/datasource/post_local_datasource.dart';
 import 'package:connectly/features/post/data/datasource/post_remote_datasource.dart';
 import 'package:connectly/features/post/data/repository/post_repository_impl.dart';
 import 'package:connectly/features/post/domain/repositories/post_repository.dart';
@@ -101,11 +102,16 @@ void setupInjections() {
     () => PostRemoteDataSource(getIt<FirebaseFirestore>()),
   );
 
-  // Post Repository
-  getIt.registerLazySingleton<PostRepository>(
-    () => PostRepositoryImpl(getIt<PostRemoteDataSource>()),
-  );
+  getIt.registerLazySingleton<PostLocalDataSource>(() => PostLocalDataSource());
 
+  // Post Repository
+
+  getIt.registerLazySingleton<PostRepository>(
+    () => PostRepositoryImpl(
+      getIt<PostRemoteDataSource>(),
+      getIt<PostLocalDataSource>(),
+    ),
+  );
   // Post UseCases
   getIt.registerLazySingleton<CreatePostUseCase>(
     () => CreatePostUseCase(getIt<PostRepository>()),
